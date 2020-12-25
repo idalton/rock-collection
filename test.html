@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 
-<head></head>
+<head>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
 
 <body>
 
 
- <title>JS Playground</title>
+<title>JS Playground</title>
 
 <p>Click the button to demonstrate alert box.</p>
 
@@ -36,15 +38,15 @@ function make360(){
   imagel.push(rock1)
   imagel.push(rock2)
 
- y = document.getElementById("test"); 
- y.className = "cloudimage-360";
+  y = document.getElementById("test"); 
+  y.className = "cloudimage-360";
 
- window.CI360.init();
-//  console.log(y)
-//  console.log(y.getAttributeNames())
-window.CI360._viewers[0].amount = 2
-window.CI360._viewers[0].images = imagel
-window.CI360._viewers[0].update()
+  window.CI360.init();
+  //  console.log(y)
+  //  console.log(y.getAttributeNames())
+  window.CI360._viewers[0].amount = 2
+  window.CI360._viewers[0].images = imagel
+  window.CI360._viewers[0].update()
 }
 
 
@@ -80,7 +82,7 @@ window.CI360._viewers[0].update()
     
   <div id="R2" class="rockviewer" onclick= "window.test.activate_rock_entry(this)" >
       <button class="cloudimage-360-prev"></button>
-	    <button class="cloudimage-360-next"></button>
+      <button class="cloudimage-360-next"></button>
 
   </div>
   <div class="footer"> 
@@ -165,7 +167,7 @@ window.CI360._viewers[0].update()
   padding-right: 20px;
 }
 
- .comments {
+.comments {
   margin: 13px 0px 10px 0px;  
   padding: 0px 0px 0px 15px;
   border-left: 1px solid black;
@@ -203,44 +205,44 @@ window.CI360._viewers[0].update()
 
 /* CSS stuff for the 360 viewer stuff */
 .rockviewer .cloudimage-360-prev, .rockviewer .cloudimage-360-next {
- padding: 8px;
- background: rgba(255, 255, 255, 0.5);
- border: none;
- border-radius: 4px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 4px;
 }
 .rockviewer .cloudimage-360-prev:focus, .rockviewer .cloudimage-360-next:focus {
- outline: none;
+  outline: none;
 }
 .rockviewer .cloudimage-360-prev {
- display: none;
- position: absolute;
- z-index: 100;
- top: calc(50% - 15px);
- left: 20px;
+  display: none;
+  position: absolute;
+  z-index: 100;
+  top: calc(50% - 15px);
+  left: 20px;
 }
 .rockviewer .cloudimage-360-next {
- display: none;
- position: absolute;
- z-index: 100;
- top: calc(50% - 15px);
- right: 20px;
+  display: none;
+  position: absolute;
+  z-index: 100;
+  top: calc(50% - 15px);
+  right: 20px;
 }
 .rockviewer .cloudimage-360-prev:before, .rockviewer .cloudimage-360-next:before {
- content: '';
- display: block;
- width: 30px;
- height: 30px;
- background: 50% 50% / cover no-repeat;
+  content: '';
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: 50% 50% / cover no-repeat;
 }
 .rockviewer .cloudimage-360-prev:before {
- background-image: url('https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/assets/img/arrow-left.svg');
+  background-image: url('https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/assets/img/arrow-left.svg');
 }
 .rockviewer .cloudimage-360-next:before {
- background-image: url('https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/assets/img/arrow-right.svg');
+  background-image: url('https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/assets/img/arrow-right.svg');
 }
 .rockviewer .cloudimage-360-prev.not-active, .rockviewer .cloudimage-360-next.not-active {
- opacity: 0.4;
- cursor: default;
+  opacity: 0.4;
+  cursor: default;
 }
 
 
