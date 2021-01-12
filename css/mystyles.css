@@ -1,4 +1,7 @@
 
+
+/******************** ROCKENTRY ***********************/
+
 .rockentry {
     max-width: 500px;
     width: 500px;
@@ -20,9 +23,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  /* max-width: 500px; */
-  /* width: 500px; */
-  /* height: 500px; */
     padding: 0 10px;
 }
 
@@ -31,31 +31,57 @@
     display: inline-block;
 }
 
-
+/******************** Footer Elements ***********************/
 .rockentry > .footer {
     display: flex;
     justify-content: left;
     justify-content: start;
     align-items: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
     /* max-width: 500px; */
     /* width: 500px; */
     /* height: 500px; */
 }
+.footer > .status_comments {
+    display: flex;
+    justify-content: left;
+    justify-content: start;
+    align-items: flex-start;
+    border-left: 1px solid black;
+    min-height: 80px;
+}
 
 .stats {
     text-align: left;
-    width: min-content;
+    min-width: fit-content;
     padding: 10px;
-    padding-right: 20px;
+    padding-top: 0px;
+}
+
+.status {
+    text-align: left;
+    min-width: fit-content;
+    padding: 10px;
+    padding-top: 0px;
+    /* min-height: 80px; */
+    /* border-left: 1px solid black; */
 }
 
 .comments {
-    margin: 13px 0px 10px 0px;  
+    margin: 0px 0px 0px 0px;  
     padding: 0px 0px 0px 15px;
     border-left: 1px solid black;
     min-height: 80px;
+    max-width: 377px;
     align-self: flex-start;
 }
+
+.comments > p {
+    margin: 0px
+}
+
+/******************** Rock Viewer Element ***********************/
 
 /* internal image div of a rock entry element */
 .rockviewer {
@@ -66,12 +92,9 @@
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
-    /* flex: 50%; */
-    /* padding: 10px;
-    margin: 10px; */
 }
 
-#showcase {
+#shocase, #rock-showcase, #piece-showcase {
     display: grid;
     width: 90%;
     margin: auto;
@@ -90,7 +113,10 @@
     }
 } */
 
-/* CSS stuff for the 360 viewer stuff */
+
+
+
+/******************* 360 viewer stuff ********************/
 .rockviewer .cloudimage-360-prev, .rockviewer .cloudimage-360-next {
     padding: 8px;
     background: rgba(255, 255, 255, 0.5);

@@ -1,5 +1,8 @@
 import CI360Viewer from './ci360.service.js';
 
+
+// --------------------- ONCLICK Functions ----------------------------
+
   function activate_rock_entry(event) {
 
     // console.log("Activating Rock Entry!");
@@ -38,7 +41,7 @@ import CI360Viewer from './ci360.service.js';
         });
   }
 
-
+     // on click helper functions
   function set_default_360_attributes(container) {
     // console.log("Applying default attributes " + container.id + " 360 viewer");  
     container.setAttribute("data-folder","https://i.imgur.com/");
@@ -49,8 +52,6 @@ import CI360Viewer from './ci360.service.js';
     container.setAttribute("speed", 100);
     container.setAttribute("drag-speed", 250);
   }
-
-
 
   function build_image_list(jsondata, rock_id) {
     console.log("Building " + rock_id + " Image List...");
@@ -64,6 +65,9 @@ import CI360Viewer from './ci360.service.js';
   }
 
 
+// --------------------- ELEMENT CREATION HELPERS ---------------------
+
+// autoplay controls
 function create_autoplay_controls(viewerbox) {
   let controls = document.createElement('div');
   controls.className = "autoplay-controls";
@@ -91,23 +95,14 @@ function create_autoplay_controls(viewerbox) {
   return controls;
 }
 
-// defunct autoplay button maker
-function create_autoplay_button(viewerbox){
-    let button = document.createElement('button');
-    autoplay.innerText = "autoplay";
-    // autoplay.addEventListener("click", autoplay_toggle(viewerbox))
-    autoplay.addEventListener("click", function (e) { autoplay_toggle(e,viewerbox)} )
-    return button;
-}
-
-
+// Header stuffs
   function create_header(rock_id, viewerbox) {
     let header = document.createElement('div');
     header.className = "header";
 
     // creating link  ### TODO ### change for new directory structure
     let link = document.createElement('a');
-    link.setAttribute('href', "Rocks/" + rock_id + ".html" );
+    link.setAttribute('href', "rocks/" + rock_id + ".html" );
     link.innerHTML= "<h1> " + rock_id + " </h1>";
 
     // creating autoplay button
@@ -120,7 +115,57 @@ function create_autoplay_button(viewerbox){
     return header;
   }
 
-  function populate_stats_table(table, stats){
+
+
+
+// footer stuffs
+  function create_footer() {
+    // make all the Elements
+    let footer = document.createElement('div');
+    footer.className = 'footer';
+
+    let stats = document.createElement('div');
+    stats.className = 'stats';
+
+    let status_comments = document.createElement('div');
+    status_comments.className = 'status_comments';
+
+    let status = document.createElement('div');
+    status.className = 'status';
+
+    let comments = document.createElement('div');
+    comments.className = 'comments';
+
+    // using fake data until actual data is created and brought into repo
+    let stats_table = document.createElement('table');
+    let stats_fakedata = {"Weight:": "N/A", "Volume:": "N/A", "Density:" : "N/A" };
+
+    // using more fake data for the status table
+    let status_table = document.createElement('table');
+    let status_fakedata = {"Status:": "Broke", "Method:": "Tile Saw", "Pieces:" : "4" };
+    
+
+    populate_table(stats_table, stats_fakedata);
+    stats.appendChild(stats_table);
+
+    populate_table(status_table, status_fakedata);
+    status.appendChild(status_table);
+
+    // fake comment data
+    let comments_text = "Neat huh?";
+    comments.innerHTML += "Comments: <br>" + comments_text;
+  
+    //append the created divs to the footer
+
+    status_comments.append(status)
+    status_comments.append(comments)
+    footer.appendChild(stats);
+    footer.appendChild(status_comments);
+
+    return footer;
+  }
+
+  function populate_table(table, stats){
     let key = null;
     // iterate through the stats json data and
     // make a row with individual cells for each key value pair
@@ -137,33 +182,8 @@ function create_autoplay_button(viewerbox){
 
 
 
-  function create_footer() {
-    let footer = document.createElement('div');
-    footer.className = 'footer';
 
-    let stats = document.createElement('div');
-    stats.className = 'stats';
-
-    // using fake data until actual data is created and brought into repo
-    let table = document.createElement('table');
-    let fakedata = {"Weight:": "N/A", "Volume:": "N/A", "Density:" : "N/A" };
-
-    populate_stats_table(table, fakedata);
-    stats.appendChild(table);
-
-    let comments = document.createElement('div');
-    comments.className = 'comments';
-
-    // once again using bogus data until the actual comments data is available in repo
-    comments.innerText = "comments go here";
-
-    footer.appendChild(stats);
-    footer.appendChild(comments);
-
-    return footer;
-  }
-
-
+// rock viewer stuffs
   function create_rock_viewer(rock_id, rock_data) {
     let viewerBox = document.createElement('div');
     viewerBox.className = 'rockviewer';
@@ -195,6 +215,8 @@ function create_autoplay_button(viewerbox){
     return viewerBox;
   }
 
+
+
   function add_rock_entry(showcase, rock_id, rock_data) {
     console.log("Adding a new rock entry ")
 
@@ -217,7 +239,7 @@ function create_autoplay_button(viewerbox){
     rockentry.appendChild(footer);
   }
 
-// ------------------- AUTOPLAY -------------------
+// ---------------------------- AUTOPLAY ----------------------------
   function autoplay_toggle(event,viewerBox){
 
   // console.log("viewer object:")
@@ -311,7 +333,7 @@ function autoplay_stop(event,viewerBox){
   viewerBox.viewer.stop();
   viewerBox.viewer.autoplay = false;
 }
-// -----------------------------------------------
+// ------------------------------------------------------------------
 
 // helper function to all for non-automated adding of rock entrys to showcases
 // setup now with example rocks
@@ -334,6 +356,7 @@ function kickoff_rocks(showcase, json){
     }
 }
 
+// ---------------------- EXPORTING FUNCTIONS ---------------------
 // "export" local functions to a global var to be called for testing in the html page
 window.test.activate_rock_entry = activate_rock_entry;
 window.test.add_rock_entry = add_rock_entry;
@@ -343,13 +366,15 @@ window.test.autoplay_left = autoplay_left;
 window.test.autoplay_right = autoplay_right;
 window.test.add_rock_entry_adhoc = add_rock_entry_adhoc;
 
+
+// ------------------------- ONLOAD -------------------------------
 // onload listner, automates the loading of rock entries to the showcase by
 // asynchronously loading the rock catalog and iterating through the available rocks
 // and loading them
 // also stands as the first code loaded on page load, useful for quick debugging 
 window.addEventListener('load', (event) => {
   console.log('The page has fully loaded');
-  let showcase = document.getElementById("showcase"); 
+  let showcase = document.getElementById("rock-showcase"); 
   let jsonfile = "rocks/rockcatalog.json"
   // var fileName = location.href.split("/").slice(-1); 
   console.log(location)
