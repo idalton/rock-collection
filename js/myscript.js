@@ -60,8 +60,8 @@ import CI360Viewer from './ci360.service.js';
     for (let i = 1; i < jsondata.image_count + 1; i++){
         rock = jsondata[i];
         imagerocklist.push(rock.id + ".jpg");
-     }
-     return imagerocklist;
+    }
+    return imagerocklist;
   }
 
 
@@ -119,63 +119,61 @@ function create_autoplay_controls(viewerbox) {
 
 
 // footer stuffs
-  function create_footer() {
+  function create_footer(rock_info) {
     // make all the Elements
     let footer = document.createElement('div');
     footer.className = 'footer';
 
-    let stats = document.createElement('div');
-    stats.className = 'stats';
+    let measurements = document.createElement('div');
+    measurements.className = 'measurements';
 
-    let status_comments = document.createElement('div');
-    status_comments.className = 'status_comments';
+    let details_comments = document.createElement('div');
+    details_comments.className = 'details_comments';
 
-    let status = document.createElement('div');
-    status.className = 'status';
+    let details = document.createElement('div');
+    details.className = 'details';
 
     let comments = document.createElement('div');
     comments.className = 'comments';
 
     // using fake data until actual data is created and brought into repo
-    let stats_table = document.createElement('table');
-    let stats_fakedata = {"Weight:": "N/A", "Volume:": "N/A", "Density:" : "N/A" };
+    let measurements_table = document.createElement('table');
+    let measurements_fakedata = {"Weight:": "N/A", "Volume:": "N/A", "Density:" : "N/A" };
 
-    // using more fake data for the status table
-    let status_table = document.createElement('table');
-    let status_fakedata = {"Status:": "Broke", "Method:": "Tile Saw", "Pieces:" : "4" };
+    // using more fake data for the details table
+    let details_table = document.createElement('table');
+    let details_fakedata = {"Status:": "Broke", "Method:": "Tile Saw", "Pieces:" : "4" };
     
 
-    populate_table(stats_table, stats_fakedata);
-    stats.appendChild(stats_table);
+    populate_table(measurements_table, rock_info["Measurements"]);
+    measurements.appendChild(measurements_table);
 
-    populate_table(status_table, status_fakedata);
-    status.appendChild(status_table);
+    populate_table(details_table, rock_info["Details"]);
+    details.appendChild(details_table);
 
-    // fake comment data
-    let comments_text = "Neat huh?";
-    comments.innerHTML += "Comments: <br>" + comments_text;
+    comments.innerHTML += "Comments: <br>" + rock_info["Comments"];
   
     //append the created divs to the footer
 
-    status_comments.append(status)
-    status_comments.append(comments)
-    footer.appendChild(stats);
-    footer.appendChild(status_comments);
+    details_comments.append(details)
+    details_comments.append(comments)
+    footer.appendChild(measurements);
+    footer.appendChild(details_comments);
 
     return footer;
   }
 
-  function populate_table(table, stats){
+  function populate_table(table, data){
     let key = null;
-    // iterate through the stats json data and
+    // iterate through the json data and
     // make a row with individual cells for each key value pair
-    for (key in stats) {
+    for (key in data) {
       let row = table.insertRow();
       let field = row.insertCell();
-      let text = document.createTextNode(key);
+      let text = document.createTextNode(key + ":");
       field.appendChild(text);
       field = row.insertCell();
-      text = document.createTextNode(stats[key])
+      text = document.createTextNode(data[key])
       field.appendChild(text);
       }
   }
@@ -228,8 +226,8 @@ function create_autoplay_controls(viewerbox) {
 
     let header = create_header(rock_id, rockviewer);
 
-    let footer = create_footer()
- 
+    let footer = create_footer(rock_data["info"])
+
     // add whole entry element to the grid define showcase
     showcase.appendChild(rockentry);
 

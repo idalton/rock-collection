@@ -43,7 +43,7 @@
     /* width: 500px; */
     /* height: 500px; */
 }
-.footer > .status_comments {
+.footer > .details_comments {
     display: flex;
     justify-content: left;
     justify-content: start;
@@ -52,14 +52,14 @@
     min-height: 80px;
 }
 
-.stats {
+.measurements {
     text-align: left;
     min-width: fit-content;
     padding: 10px;
     padding-top: 0px;
 }
 
-.status {
+.details {
     text-align: left;
     min-width: fit-content;
     padding: 10px;
