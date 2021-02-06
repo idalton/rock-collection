@@ -14,8 +14,7 @@
 
 <button onclick="greeting()">Click Me for a greeting</button>
 
-<button onclick="window.test.add_rock_entry_adhoc()">add div</button>
-<!-- <button onclick="window.test.make_rows()">make rows</button> -->
+<!-- <button onclick="window.test.add_rock_entry_adhoc()">add div</button> -->
 
 
 <script>
@@ -62,82 +61,147 @@ function make360(){
 <div id="test" class="lol"></div>
 <br/>
 
-<!-- https://i.imgur.com/5k1Orih.jpg R2 -->
 </body>
 </html>
 
-<p>test rock entry:</p>
-<div class="rockentry"> 
-  <div class="header"> 
-    <a href="Rocks/R2.html"><h1> R2</h1></a>
-    <!-- <button onclick="window.test.autoplay_toggle(null, this.parentElement.parentElement.children[1])">Autoplay</button> -->
-    <div class="autoplay-controls">
-    <p style='padding-right: .5em; font-size: 120%; margin: 0;'> Autoplay </p> 
-    <button onclick="window.test.autoplay_left(null, this.parentElement.parentElement.parentElement.children[1])"> <span class="arrow left"> </button>
-    <!-- <button class="stopbutton" onclick="window.test.autoplay_stop(null, this.parentElement.parentElement.parentElement.children[1])">Stop</button> -->
-    <button onclick="window.test.autoplay_right(null, this.parentElement.parentElement.parentElement.children[1])"> <span class="arrow right"></span></button>
+<div class="testbed" style="display: flex;">
+
+  <p>test rock entry:</p>
+  <div class="rockentry"> 
+    <div class="header"> 
+      <a href="Rocks/R2.html"><h1> R2</h1></a>
+      <!-- <button onclick="window.test.autoplay_toggle(null, this.parentElement.parentElement.children[1])">Autoplay</button> -->
+      <div class="autoplay-controls">
+      <p style='padding-right: .5em; font-size: 120%; margin: 0;'> Autoplay </p> 
+      <button onclick="window.test.autoplay_left(null, this.parentElement.parentElement.parentElement.children[1])"> <span class="arrow left"> </button>
+      <!-- <button class="stopbutton" onclick="window.test.autoplay_stop(null, this.parentElement.parentElement.parentElement.children[1])">Stop</button> -->
+      <button onclick="window.test.autoplay_right(null, this.parentElement.parentElement.parentElement.children[1])"> <span class="arrow right"></span></button>
+
+      </div>
+    </div>
+      
+    <div id="R2" class="entryviewer" onclick= "window.test.activate_entry(this)" >
+        <button class="cloudimage-360-prev"></button>
+        <button class="cloudimage-360-next"></button>
 
     </div>
+    <div class="footer"> 
+        <div class="measurements">
+          <table>
+            <tr>
+              <td>Weight:</td>
+              <td>104 g</td>
+            </tr>
+            <tr>
+              <td>Volume:</td>
+              <td>40 cc</td>
+            </tr>
+            <tr>
+              <td>Density:</td>
+              <td>2.6 g/cc</td>
+            </tr>
+          </table>
+      </div>
+      <div class="details_comments">
+        <div class="details">
+          <table>
+            <tr>
+              <td>Status:</td>
+              <td>Broken</td> 
+            </tr>
+            <tr>
+              <td>Method:</td>
+              <td>Tile Saw</td>
+            </tr>
+            <tr>
+              <td>Pieces:</td>
+              <td>3</td>
+            </tr>
+          </table>
+      </div>
+          <div class="comments">
+            <!-- <p>Status: Broken</p>
+            <p>Breaking Method: Tile Saw</p>
+            <br> -->
+            <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </div> -->
+            Comments: <br> rock was essentially shattered by a pair of pliars trying to hold the rock to be cut by a tile saw
+          </div>
+            <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </div> -->
+          <!-- <div class="comments"> Lorem  </div> -->
+          </div>
+
+      </div>
   </div>
-    
-  <div id="R2" class="rockviewer" onclick= "window.test.activate_rock_entry(this)" >
-      <button class="cloudimage-360-prev"></button>
-      <button class="cloudimage-360-next"></button>
 
+  <p>test Piece entry:</p>
+  <div class="pieceentry"> 
+    <div class="header"> 
+      <a href="Pieces/R0.2.html"><h1> R0.2 </h1></a>
+      <!-- <button onclick="window.test.autoplay_toggle(null, this.parentElement.parentElement.children[1])">Autoplay</button> -->
+      <div class="autoplay-controls">
+      <p style='padding-right: .5em; font-size: 120%; margin: 0;'> Autoplay </p> 
+      <button onclick="window.test.autoplay_left(null, this.parentElement.parentElement.parentElement.children[1])"> <span class="arrow left"> </button>
+      <!-- <button class="stopbutton" onclick="window.test.autoplay_stop(null, this.parentElement.parentElement.parentElement.children[1])">Stop</button> -->
+      <button onclick="window.test.autoplay_right(null, this.parentElement.parentElement.parentElement.children[1])"> <span class="arrow right"></span></button>
+
+      </div>
+    </div>
+      
+    <div id="R0.2" class="entryviewer" onclick= "window.test.activate_entry(this)" style='background-image: url("https://i.imgur.com/8sQ404Y.jpg");' >
+        <button class="cloudimage-360-prev"></button>
+        <button class="cloudimage-360-next"></button>
+
+    </div>
+    <div class="footer"> 
+        <div class="typestuff">
+          <table>
+            <tr>
+              <td>Type:</td>
+              <td>Geode</td>
+            </tr>
+            <tr>
+              <td>Method:</td>
+              <td>Rock</td>
+            </tr>
+          </table>
+      </div>
+      <div class="beauty_comments">
+        <div class="beauty">
+          <table>
+            <tr>
+              <td>Crystal:</td>
+              <td>????</td> 
+            </tr>
+            <tr>
+              <td>Beauty:</td>
+              <td>9/10</td>
+            </tr>
+          </table>
+      </div>
+          <div class="comments">
+            <!-- <p>Status: Broken</p>
+            <p>Breaking Method: Tile Saw</p>
+            <br> -->
+            <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </div> -->
+            Comments: <br> Actually broken by another Rock Revealing a surpising inside
+          </div>
+            <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </div> -->
+          <!-- <div class="comments"> Lorem  </div> -->
+          </div>
+
+      </div>
   </div>
-  <div class="footer"> 
-      <div class="measurements">
-        <table>
-          <tr>
-            <td>Weight:</td>
-            <td>104 g</td>
-          </tr>
-          <tr>
-            <td>Volume:</td>
-            <td>40 cc</td>
-          </tr>
-          <tr>
-            <td>Density:</td>
-            <td>2.6 g/cc</td>
-          </tr>
-        </table>
-    </div>
-    <div class="details_comments">
-      <div class="details">
-        <table>
-          <tr>
-            <td>Status:</td>
-            <td>Broken</td> 
-          </tr>
-          <tr>
-            <td>Method:</td>
-            <td>Tile Saw</td>
-          </tr>
-          <tr>
-            <td>Pieces:</td>
-            <td>3</td>
-          </tr>
-        </table>
-    </div>
-        <div class="comments">
-          <!-- <p>Status: Broken</p>
-          <p>Breaking Method: Tile Saw</p>
-          <br> -->
-          <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </div> -->
-          Comments: <br> rock was essentially shattered by a pair of pliars trying to hold the rock to be cut by a tile saw
-        </div>
-          <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </div> -->
-        <!-- <div class="comments"> Lorem  </div> -->
-        </div>
 
-    </div>
 </div>
+
+
+<p style="text-align: center; font-size: 40px;">Piece Showcase</p>
+<div id="piece-showcase"></div>
+<p style="padding-left: 5%;">Note: R0 is a conceptual rock for pieces that have no parent rock in the collection</p>
 
 <p style="text-align: center; font-size: 40px;">Rock Showcase</p>
 <div id="rock-showcase"></div>
 
-<p style="text-align: center; font-size: 40px;">Piece Showcase</p>
-<div id="piece-showcase"></div>
 
 <script src="js/ci360.utils.js" type="module"></script>
 <script src="js/ci360.service.js" type="module"></script>

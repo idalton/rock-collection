@@ -1,9 +1,17 @@
 import CI360Viewer from './ci360.service.js';
 
 
+
+// --------------------- small helpers ------------------------------
+
+function is_piece(id){
+  return id.includes(".")
+}
+
+
 // --------------------- ONCLICK Functions ----------------------------
 
-  function activate_rock_entry(event) {
+  function activate_entry(event) {
 
     // console.log("Activating Rock Entry!");
     console.log("click event:");
@@ -23,14 +31,21 @@ import CI360Viewer from './ci360.service.js';
       return null;  
     } 
 
-    console.log("Activating Rock Entry for " + container.id + "!");
+    console.log("Activating Entry for " + container.id + "!");
 
     set_default_360_attributes(container);
 
     container.removeAttribute("onclick");
 
+      let jsonfile = ""
     // fetch the apropriate rock json file and load the image data in the 360 viewer
-    let jsonfile = "rocks/" + container.id + "/" + container.id + ".json" // TODO: change to common function
+    if (is_piece(container.id)){
+      jsonfile = "pieces/" + container.id + "/" + container.id + ".json" // TODO: change to common function
+    }
+    else {
+      jsonfile = "rocks/" + container.id + "/" + container.id + ".json" // TODO: change to common function
+    }
+
     fetch(jsonfile)
     .then(response => response.json())
     .then(json => {
@@ -119,7 +134,7 @@ function create_autoplay_controls(viewerbox) {
 
 
 // footer stuffs
-  function create_footer(rock_info) {
+  function create_rock_footer(rock_info) {
     // make all the Elements
     let footer = document.createElement('div');
     footer.className = 'footer';
@@ -153,8 +168,7 @@ function create_autoplay_controls(viewerbox) {
 
     comments.innerHTML += "Comments: <br>" + rock_info["Comments"];
   
-    //append the created divs to the footer
-
+    /* append the created divs to the footer */
     details_comments.append(details)
     details_comments.append(comments)
     footer.appendChild(measurements);
@@ -162,6 +176,43 @@ function create_autoplay_controls(viewerbox) {
 
     return footer;
   }
+
+  function create_piece_footer(piece_info) {
+    let footer = document.createElement('div');
+    footer.className = 'footer';
+
+    let type_section = document.createElement('div');
+    type_section.className = 'typestuff';
+
+    let beauty_comments = document.createElement('div');
+    beauty_comments.className = 'beauty_comments';
+
+    let beauty = document.createElement('div');
+    beauty.className = 'beauty';
+
+    let comments = document.createElement('div');
+    comments.className = 'comments';
+
+    let type_table = document.createElement('table');
+    let beauty_table = document.createElement('table');
+
+    populate_table(type_table, piece_info["Type"]);
+    type_section.appendChild(type_table);
+
+    populate_table(beauty_table, piece_info["Beauty"]);
+    beauty.appendChild(beauty_table);
+
+    comments.innerHTML += "Comments: <br>" + piece_info["Comments"];
+  
+    /* append the created divs to the footer */
+    beauty_comments.append(beauty)
+    beauty_comments.append(comments)
+    footer.appendChild(type_section);
+    footer.appendChild(beauty_comments);
+
+    return footer;
+  }
+
 
   function populate_table(table, data){
     let key = null;
@@ -182,13 +233,13 @@ function create_autoplay_controls(viewerbox) {
 
 
 // rock viewer stuffs
-  function create_rock_viewer(rock_id, rock_data) {
+  function create_entry_viewer(item_id, item_data) {
     let viewerBox = document.createElement('div');
-    viewerBox.className = 'rockviewer';
-    viewerBox.id = rock_id;
+    viewerBox.className = 'entryviewer';
+    viewerBox.id = item_id;
 
     // get background image from rock data 
-    let first_image_dict = rock_data["first_image"]
+    let first_image_dict = item_data["first_image"]
     let first_image_url = "https://i.imgur.com/" + first_image_dict["id"] + ".jpg"
 
     // asign style can be offloaded
@@ -208,33 +259,48 @@ function create_autoplay_controls(viewerbox) {
     viewerBox.appendChild(next_button);
 
     // interactivity 
-    viewerBox.addEventListener("click", activate_rock_entry , {once: true});
+    viewerBox.addEventListener("click", activate_entry , {once: true});
 
     return viewerBox;
   }
 
 
 
-  function add_rock_entry(showcase, rock_id, rock_data) {
-    console.log("Adding a new rock entry ")
+  function add_entry(showcase, item_id, item_data) {
+    console.log("Adding a new entry")
 
     // create the rockentry container div
-    let rockentry = document.createElement('div');
-    rockentry.className = "rockentry"
+    let entry = document.createElement('div');
+    if (is_piece(item_id)) {
+      entry.className = "pieceentry"
+    } else{
+      entry.className = "rockentry"
+    } 
 
-    let rockviewer = create_rock_viewer(rock_id, rock_data);
+    // if item is 360 use viewer
+    // if item is slideshow need a new slideshow maker function
+    let entryviewer = create_entry_viewer(item_id, item_data);
 
-    let header = create_header(rock_id, rockviewer);
+    
+    let header = create_header(item_id, entryviewer);
 
-    let footer = create_footer(rock_data["info"])
+
+    let footer = null
+    /* the footers for pieces and rocks are slightly different and warrant 
+       a new different function for there construction */
+    if (is_piece(item_id)){
+      footer = create_piece_footer(item_data["info"])
+    } else {
+      footer = create_rock_footer(item_data["info"])
+    }
 
     // add whole entry element to the grid define showcase
-    showcase.appendChild(rockentry);
+    showcase.appendChild(entry);
 
     // apppend the created elements to the entry element
-    rockentry.appendChild(header)
-    rockentry.appendChild(rockviewer);
-    rockentry.appendChild(footer);
+    entry.appendChild(header)
+    entry.appendChild(entryviewer);
+    entry.appendChild(footer);
   }
 
 // ---------------------------- AUTOPLAY ----------------------------
@@ -248,7 +314,7 @@ function create_autoplay_controls(viewerbox) {
   // if the viewer isnt loaded set the auto play att and then call the load function
   if (! viewerBox.viewer) {
     viewerBox.setAttribute('autoplay', '');
-   activate_rock_entry(viewerBox)
+   activate_entry(viewerBox)
    return
   }
 
@@ -270,7 +336,7 @@ function autoplay_left(event,viewerBox){
     // need both attributes for the autoplay to start in reverse
     viewerBox.setAttribute('autoplay', '');
     viewerBox.setAttribute('autoplay-reverse', '');
-    activate_rock_entry(viewerBox)
+    activate_entry(viewerBox)
    return
   }
 
@@ -298,7 +364,7 @@ function autoplay_right(event,viewerBox){
   // if the viewer isnt loaded set the auto play attribute and then call the load function
   if (! viewerBox.viewer) {
     viewerBox.setAttribute('autoplay', '');
-    activate_rock_entry(viewerBox)
+    activate_entry(viewerBox)
    return
   }
 
@@ -335,11 +401,11 @@ function autoplay_stop(event,viewerBox){
 
 // helper function to all for non-automated adding of rock entrys to showcases
 // setup now with example rocks
+// defunct now but may redo in the future
 function add_rock_entry_adhoc() {
 let showcase = document.getElementById("showcase"); 
  let rock_data = {'first_image': {'id': '5k1Orih', 'name': 'R2_adjusted_1x1_180_1.jpg'}, 'image_count': 180}
-//  console.log(rock_data)
- add_rock_entry(showcase, "R2", rock_data)
+ add_entry(showcase, "R2", rock_data)
 }
 
 function kickoff_rocks(showcase, json){
@@ -350,14 +416,23 @@ function kickoff_rocks(showcase, json){
     for (key in rocks) {
       // console.log(key)
       // console.log(rocks[key])
-      add_rock_entry(showcase, key, rocks[key])
+      add_entry(showcase, key, rocks[key])
     }
 }
 
+function kickoff_pieces(showcase, json){
+  let key = null;
+  let pieces = json["pieces"]
+    for (key in pieces) {
+      add_entry(showcase, key, pieces[key])
+    }
+}
+
+
 // ---------------------- EXPORTING FUNCTIONS ---------------------
 // "export" local functions to a global var to be called for testing in the html page
-window.test.activate_rock_entry = activate_rock_entry;
-window.test.add_rock_entry = add_rock_entry;
+window.test.activate_entry = activate_entry;
+window.test.add_rock_entry = add_entry;
 window.test.autoplay_toggle = autoplay_toggle;
 window.test.autoplay_stop = autoplay_stop;
 window.test.autoplay_left = autoplay_left;
@@ -372,16 +447,25 @@ window.test.add_rock_entry_adhoc = add_rock_entry_adhoc;
 // also stands as the first code loaded on page load, useful for quick debugging 
 window.addEventListener('load', (event) => {
   console.log('The page has fully loaded');
-  let showcase = document.getElementById("rock-showcase"); 
-  let jsonfile = "rocks/rockcatalog.json"
+  let rock_showcase = document.getElementById("rock-showcase");
+  let piece_showcase = document.getElementById("piece-showcase"); 
+  let rock_jsonfile = "rocks/rockcatalog.json"
+  let piece_jsonfile = "pieces/piececatalog.json"
   // var fileName = location.href.split("/").slice(-1); 
   console.log(location)
   console.log(location.href)
   console.log(location.href.split("/"))
   console.log(location.href.split("/").slice(-1))
-  fetch(jsonfile)
+  // rocks
+  fetch(rock_jsonfile)
   .then(response => response.json())
   .then(json => {
-       kickoff_rocks(showcase, json)
+       kickoff_rocks(rock_showcase, json)
+      });
+  // pieces
+  fetch(piece_jsonfile)
+  .then(response => response.json())
+  .then(json => {
+        kickoff_pieces(piece_showcase, json)
       });
 });
