@@ -53,7 +53,7 @@ const get360ViewProps = (image) => ({
   controlReverse: isTrue(image, 'control-reverse'),
   stopAtEdges: isTrue(image, 'stop-at-edges'),
   hide360Logo: isTrue(image, 'hide-360-logo'),
-  logoSrc: attr(image, 'logo-src') || 'https://scaleflex.ultrafast.io/https://scaleflex.airstore.io/filerobot/js-cloudimage-360-view/360_view.svg'
+  logoSrc: attr(image, 'logo-src') || '../img/360_view.svg'
 });
 
 const isTrue = (image, type) => {
@@ -89,17 +89,6 @@ const setView360Icon = (view360Icon, logoSrc) => {
 }
 
 const set360ViewCircleIconStyles = (view360CircleIcon, bottomCircleOffset) => {
-  view360CircleIcon.src = `https://scaleflex.ultrafast.io/https://scaleflex.api.airstore.io/v1/get/_/2236d56f-914a-5a8b-a3ae-f7bde1c50000/360.svg`;
-  view360CircleIcon.style.position = 'absolute';
-  view360CircleIcon.style.top = 'auto';
-  view360CircleIcon.style.bottom = bottomCircleOffset + '%';
-  view360CircleIcon.style.left = '0';
-  view360CircleIcon.style.right = '0';
-  view360CircleIcon.style.width = '80%';
-  view360CircleIcon.style.height = 'auto';
-  view360CircleIcon.style.margin = 'auto';
-  view360CircleIcon.style.transition = '0.5s all';
-  view360CircleIcon.style.zIndex = '2';
 };
 
 const setLoaderStyles = (loader) => {
@@ -133,7 +122,7 @@ const setMagnifyIconStyles = (magnifyIcon, fullScreen) => {
   magnifyIcon.style.height = '25px';
   magnifyIcon.style.zIndex = '101';
   magnifyIcon.style.cursor = 'pointer';
-  magnifyIcon.style.background = `url('https://scaleflex.ultrafast.io/https://scaleflex.airstore.io/filerobot/js-cloudimage-360-view/loupe.svg') 50% 50% / cover no-repeat`;
+  magnifyIcon.style.background = `url('../img/loupe.svg') 50% 50% / cover no-repeat`;
 };
 
 const setFullScreenModalStyles = (fullScreenModal) => {
@@ -149,25 +138,9 @@ const setFullScreenModalStyles = (fullScreenModal) => {
 };
 
 const setFullScreenIconStyles = (fullScreenIcon) => {
-  fullScreenIcon.style.position = 'absolute';
-  fullScreenIcon.style.top = '5px';
-  fullScreenIcon.style.right = '5px';
-  fullScreenIcon.style.width = '25px';
-  fullScreenIcon.style.height = '25px';
-  fullScreenIcon.style.zIndex = '101';
-  fullScreenIcon.style.cursor = 'pointer';
-  fullScreenIcon.style.background = `url('https://scaleflex.ultrafast.io/https://scaleflex.airstore.io/filerobot/js-cloudimage-360-view/full_screen.svg') 50% 50% / cover no-repeat`;
 };
 
 const setCloseFullScreenViewStyles = (closeFullScreenIcon) => {
-  closeFullScreenIcon.style.position = 'absolute';
-  closeFullScreenIcon.style.top = '5px';
-  closeFullScreenIcon.style.right = '5px';
-  closeFullScreenIcon.style.width = '25px';
-  closeFullScreenIcon.style.height = '25px';
-  closeFullScreenIcon.style.zIndex = '101';
-  closeFullScreenIcon.style.cursor = 'pointer';
-  closeFullScreenIcon.style.background = `url('https://scaleflex.ultrafast.io/https://scaleflex.airstore.io/filerobot/js-cloudimage-360-view/cross.svg') 50% 50% / cover no-repeat`;
 };
 
 const magnify = (container, src, glass, zoom) => {

@@ -166,11 +166,9 @@
     background: 50% 50% / cover no-repeat;
 }
 .entryviewer .cloudimage-360-prev:before {
-    /* background-image: url('https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/assets/img/arrow-left.svg'); */
     background-image: url('../img/arrow-left.svg');
 }
 .entryviewer .cloudimage-360-next:before {
-    /* background-image: url('https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/assets/img/arrow-right.svg'); */
     background-image: url('../img/arrow-right.svg');
 }
 .entryviewer .cloudimage-360-prev.not-active, .entryviewer .cloudimage-360-next.not-active {
@@ -222,6 +220,7 @@ span.arrow.left {
     /* background: rgba(255,255,255,0.8) url(../img/360_view.svg) 50% 50% / contain no-repeat; */
     background: url('../img/360_view.svg') 50% 50% / contain no-repeat;
     background-color: rgba(255, 255, 255, 0.8);
+    pointer-events: none;
 }
 
 

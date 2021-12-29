@@ -37,7 +37,7 @@ function is_piece(id){
 
     container.removeAttribute("onclick");
     
-    // remove the i360 icon
+    // remove the i360
     let icon = container.querySelector(".icon360");
     icon.style = "visibility: hidden;"
 
@@ -247,6 +247,7 @@ function create_autoplay_controls(viewerbox) {
     let first_image_url = "https://i.imgur.com/" + first_image_dict["id"] + ".jpg"
 
     // asign style can be offloaded
+    // viewerBox.style.backgroundImage = "rgba(255,255,255,0.8) url(../img/360_view.svg) 50% 50% / contain no-repeat, url(' + first_image_url + ');";
     viewerBox.style.maxWidth ="500px"
     viewerBox.style.width ="500px"
     viewerBox.style.height ="500px"
