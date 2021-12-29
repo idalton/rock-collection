@@ -53,7 +53,7 @@ const get360ViewProps = (image) => ({
   controlReverse: isTrue(image, 'control-reverse'),
   stopAtEdges: isTrue(image, 'stop-at-edges'),
   hide360Logo: isTrue(image, 'hide-360-logo'),
-  logoSrc: attr(image, 'logo-src') || '../img/360_view.svg'
+  logoSrc: attr(image, 'logo-src') || '/img/360_view.svg'
 });
 
 const isTrue = (image, type) => {
@@ -122,7 +122,7 @@ const setMagnifyIconStyles = (magnifyIcon, fullScreen) => {
   magnifyIcon.style.height = '25px';
   magnifyIcon.style.zIndex = '101';
   magnifyIcon.style.cursor = 'pointer';
-  magnifyIcon.style.background = `url('../img/loupe.svg') 50% 50% / cover no-repeat`;
+  magnifyIcon.style.background = "url('/img/loupe.svg') 50% 50% / cover no-repeat";
 };
 
 const setFullScreenModalStyles = (fullScreenModal) => {
