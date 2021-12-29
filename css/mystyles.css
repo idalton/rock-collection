@@ -104,10 +104,11 @@
     max-width: 500px;
     /* width: 500px; */
     height: 500px;
-    background-image: url("https://i.imgur.com/IvQVtzh.jpg");
+    /* background-image: url("https://i.imgur.com/IvQVtzh.jpg"); */
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
+    position: relative;
 }
 
 #rock-showcase, #piece-showcase {
@@ -165,10 +166,13 @@
     background: 50% 50% / cover no-repeat;
 }
 .entryviewer .cloudimage-360-prev:before {
-    background-image: url('https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/assets/img/arrow-left.svg');
+    /* background-image: url('https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/assets/img/arrow-left.svg'); */
+    background-image: url('../img/arrow-left.svg');
+    ../img/arrow_right.svg
 }
 .entryviewer .cloudimage-360-next:before {
-    background-image: url('https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/assets/img/arrow-right.svg');
+    /* background-image: url('https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/assets/img/arrow-right.svg'); */
+    background-image: url('../img/arrow-right.svg');
 }
 .entryviewer .cloudimage-360-prev.not-active, .entryviewer .cloudimage-360-next.not-active {
     opacity: 0.4;
@@ -198,4 +202,37 @@ span.arrow{
 
 span.arrow.left {
     transform: rotate(180deg);
+}
+
+
+
+.entryviewer > .icon360 {
+    position: absolute;
+    inset: 0px;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border-radius: 50%;
+    box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 4px;
+    /* transition: 0.5s all; */
+    color: rgb(80,80,80);
+    text-align: center;
+    line-height: 100px;
+    color: rgb(80, 80, 80);
+    z-index: 2;
+    /* background: rgba(255,255,255,0.8) url(../img/360_view.svg) 50% 50% / contain no-repeat; */
+    background: url('../img/360_view.svg') 50% 50% / contain no-repeat;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+
+
+.rainbow {
+    background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+    background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+    color:transparent;
+    border: 2px dotted white;
+    -webkit-background-clip: text;  
+    background-clip: text;
 }

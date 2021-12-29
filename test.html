@@ -10,6 +10,15 @@
 
 <title>JS Playground</title>
 
+<div style="text-align: center;" >
+    <h1  style = "font-size: 50px" class="rainbow">Welcome to Ian's Rock Collection!</h1>
+</div>
+
+
+<div>
+  <p> This is a test page for development but its still pretty cool if you ask me.</p>
+</div>
+
 <p>Click the button to demonstrate alert box.</p>
 
 <button onclick="greeting()">Click Me for a greeting</button>
@@ -53,7 +62,6 @@ function make360(){
 
 
 
-
 <br/>
 <br/>
 <br/>
@@ -80,7 +88,8 @@ function make360(){
       </div>
     </div>
       
-    <div id="R2" class="entryviewer" onclick= "window.test.activate_entry(this)" >
+    <div id="R2" class="entryviewer" onclick= "window.test.activate_entry(this)" style="position: relative;  background-image: url('https://i.imgur.com/IvQVtzh.jpg'); " >
+        <div class="icon360"></div>
         <button class="cloudimage-360-prev"></button>
         <button class="cloudimage-360-next"></button>
 
@@ -133,6 +142,9 @@ function make360(){
       </div>
   </div>
 
+  <!-- <div style="width: 100px; height: 100px; margin: auto; border-radius: 50%;  color: rgb(80, 80, 80); line-height: 100px; z-index: 2; background: url('../img/360_view.svg') 50% 50% / no-repeat, rgba(255, 255, 255, 0.8), url('https://i.imgur.com/8sQ404Y.jpg');"></div> -->
+
+
   <p>test Piece entry:</p>
   <div class="pieceentry"> 
     <div class="header"> 
@@ -146,8 +158,8 @@ function make360(){
 
       </div>
     </div>
-      
-    <div id="R0.2" class="entryviewer" onclick= "window.test.activate_entry(this)" style='background-image: url("https://i.imgur.com/8sQ404Y.jpg");' >
+    <div id="R0.2" class="entryviewer" onclick= "window.test.activate_entry(this)" style='position: relative; background-image: url("https://i.imgur.com/8sQ404Y.jpg");' >
+      <div class="icon360"></div>
         <button class="cloudimage-360-prev"></button>
         <button class="cloudimage-360-next"></button>
 

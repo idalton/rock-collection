@@ -36,6 +36,10 @@ function is_piece(id){
     set_default_360_attributes(container);
 
     container.removeAttribute("onclick");
+    
+    // remove the i360 icon
+    let icon = container.querySelector(".icon360");
+    icon.style = "visibility: hidden;"
 
       let jsonfile = ""
     // fetch the apropriate rock json file and load the image data in the 360 viewer
@@ -243,13 +247,17 @@ function create_autoplay_controls(viewerbox) {
     let first_image_url = "https://i.imgur.com/" + first_image_dict["id"] + ".jpg"
 
     // asign style can be offloaded
-    viewerBox.style.backgroundImage = "url(" + first_image_url + ")";
     viewerBox.style.maxWidth ="500px"
     viewerBox.style.width ="500px"
     viewerBox.style.height ="500px"
+  
+    viewerBox.style.backgroundImage = "url(" + first_image_url + ")";
+    viewerBox.style.backgroundPosition = "0% 0%"
     viewerBox.style.backgroundSize = "contain"
     viewerBox.style.backgroundRepeat = "no-repeat";
-  
+    viewerBox.style.backgroundSize = "500px";
+
+
     // image buttons 
     let prev_button = document.createElement('button');
     prev_button.className = "cloudimage-360-prev";
@@ -258,12 +266,15 @@ function create_autoplay_controls(viewerbox) {
     viewerBox.appendChild(prev_button);
     viewerBox.appendChild(next_button);
 
+    let icon = document.createElement('div');
+    icon.className = "icon360";
+    viewerBox.appendChild(icon);
+
     // interactivity 
     viewerBox.addEventListener("click", activate_entry , {once: true});
 
     return viewerBox;
   }
-
 
 
   function add_entry(showcase, item_id, item_data) {
@@ -314,8 +325,8 @@ function create_autoplay_controls(viewerbox) {
   // if the viewer isnt loaded set the auto play att and then call the load function
   if (! viewerBox.viewer) {
     viewerBox.setAttribute('autoplay', '');
-   activate_entry(viewerBox)
-   return
+    activate_entry(viewerBox)
+    return
   }
 
   // toggle code
@@ -337,7 +348,7 @@ function autoplay_left(event,viewerBox){
     viewerBox.setAttribute('autoplay', '');
     viewerBox.setAttribute('autoplay-reverse', '');
     activate_entry(viewerBox)
-   return
+    return
   }
 
   // if going in the this autoplay direction just stop it
@@ -365,7 +376,7 @@ function autoplay_right(event,viewerBox){
   if (! viewerBox.viewer) {
     viewerBox.setAttribute('autoplay', '');
     activate_entry(viewerBox)
-   return
+    return
   }
 
   // if going in the this autoplay direction just stop it
@@ -404,8 +415,8 @@ function autoplay_stop(event,viewerBox){
 // defunct now but may redo in the future
 function add_rock_entry_adhoc() {
 let showcase = document.getElementById("showcase"); 
- let rock_data = {'first_image': {'id': '5k1Orih', 'name': 'R2_adjusted_1x1_180_1.jpg'}, 'image_count': 180}
- add_entry(showcase, "R2", rock_data)
+  let rock_data = {'first_image': {'id': '5k1Orih', 'name': 'R2_adjusted_1x1_180_1.jpg'}, 'image_count': 180}
+  add_entry(showcase, "R2", rock_data)
 }
 
 function kickoff_rocks(showcase, json){
@@ -460,7 +471,7 @@ window.addEventListener('load', (event) => {
   fetch(rock_jsonfile)
   .then(response => response.json())
   .then(json => {
-       kickoff_rocks(rock_showcase, json)
+        kickoff_rocks(rock_showcase, json)
       });
   // pieces
   fetch(piece_jsonfile)
