@@ -168,7 +168,6 @@
 .entryviewer .cloudimage-360-prev:before {
     /* background-image: url('https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/assets/img/arrow-left.svg'); */
     background-image: url('../img/arrow-left.svg');
-    ../img/arrow_right.svg
 }
 .entryviewer .cloudimage-360-next:before {
     /* background-image: url('https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/assets/img/arrow-right.svg'); */
